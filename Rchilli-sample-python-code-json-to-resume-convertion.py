@@ -44,12 +44,17 @@ f.write('\n')
 cap = 0
 f.write('Address: ')
 splitting=pd["data"]["location_name"].split(', ')
-for i in splitting:
-    if cap==0:
-        f.write(i.capitalize())
-        cap=1
-    else:
-        f.write(f', {i.capitalize()}')
+if len(splitting)>2:
+    for i in splitting:
+        if cap==0:
+            f.write(i.capitalize())
+            cap=1
+        else:
+            f.write(f', {i.capitalize()}')
+else:
+    splitting=pd["data"]["location_name"].split(' ')
+    for i in splitting:
+        f.write(f' {i.capitalize()}')
 cap=0
 if pd["data"]["location_continent"]:
     splitting=pd["data"]["location_continent"].split()
@@ -74,12 +79,31 @@ for i in range(len(pd["data"]["education"])):
                 cap=1
             else:
                 f.write(f' {splitted.capitalize()}')
-
         if pd["data"]["education"][i]["school"]["location"]:
             if pd["data"]["education"][i]["school"]["location"]["name"]:
-                splitting = pd["data"]["education"][i]["school"]["location"]["name"].split()
-                for splitted in splitting:
-                    f.write(f' {splitted.capitalize()}')
+                splitting_main = pd["data"]["education"][i]["school"]["location"]["name"].split(", ")
+                if len(splitting_main) > 1:
+                    for splitting in splitting_main:
+                        if len(splitting.split()) > 1:
+                            count1 = 0
+                            for splitted in splitting.split():
+                                if count1 == 0:
+                                    f.write(f', {splitted.capitalize()}')
+                                    count1 = 1
+                                else:
+                                    f.write(f' {splitted.capitalize()}')
+                        else:
+                            f.write(f', {splitting.capitalize()}')
+                else:
+                    splitting_main = pd["data"]["experience"][i]["school"]["location"]["name"].split(" ")
+                    count1 = 0
+                    for splitted in splitting.split():
+                        if count1 == 0:
+                            f.write(f', {splitted.capitalize()}')
+                            count1 = 1
+                        else:
+                            f.write(f' {splitted.capitalize()}')
+
             f.write('\n')
             #f.write(f', {pd["data"]["education"][i]["school"]["location"]["name"].capitalize()}\n')
         else:
@@ -110,9 +134,29 @@ for i in range(len(pd["data"]["education"])):
                     f.write(f' {splitted.capitalize()}')
         if pd["data"]["education"][i]["school"]["location"]:
             if pd["data"]["education"][i]["school"]["location"]["name"]:
-                splitting = pd["data"]["education"][i]["school"]["location"]["name"].split()
-                for splitted in splitting:
-                    f.write(f' {splitted.capitalize()}')
+                splitting_main = pd["data"]["education"][i]["school"]["location"]["name"].split(", ")
+                if len(splitting_main) > 1:
+                    for splitting in splitting_main:
+                        if len(splitting.split()) > 1:
+                            count1 = 0
+                            for splitted in splitting.split():
+                                if count1 == 0:
+                                    f.write(f', {splitted.capitalize()}')
+                                    count1 = 1
+                                else:
+                                    f.write(f' {splitted.capitalize()}')
+                        else:
+                            f.write(f', {splitting.capitalize()}')
+                else:
+                    splitting_main = pd["data"]["experience"][i]["school"]["location"]["name"].split(" ")
+                    count1 = 0
+                    for splitted in splitting.split():
+                        if count1 == 0:
+                            f.write(f', {splitted.capitalize()}')
+                            count1 = 1
+                        else:
+                            f.write(f' {splitted.capitalize()}')
+
             f.write('\n')
         else:
             f.write(f'\n')
@@ -152,18 +196,32 @@ for i in range(len(pd["data"]["experience"])):
                     cap=1
                 else:
                     f.write(f' {splitting.capitalize()}')
-
+        #f.write(f'        {pd["data"]["experience"][i]["company"]["name"].capitalize()}')
         if pd["data"]["experience"][i]["company"]["location"]:
             if pd["data"]["experience"][i]["company"]["location"]["name"]:
-                for splitting in pd["data"]["experience"][i]["company"]["location"]["name"].split(", "):
-                    if len(splitting.split()) > 1:
-                        count1 = 0
-                        for splitted in splitting.split():
-                            if count1 == 0:
-                                f.write(f', {splitted.capitalize()}')
-                                count1 = 1
-                            else:
-                                f.write(f' {splitted.capitalize()}')
+                splitting_main = pd["data"]["experience"][i]["company"]["location"]["name"].split(", ")
+                if len(splitting_main) > 1:
+                    for splitting in splitting_main:
+                        if len(splitting.split()) > 1:
+                            count1 = 0
+                            for splitted in splitting.split():
+                                if count1 == 0:
+                                    f.write(f', {splitted.capitalize()}')
+                                    count1 = 1
+                                else:
+                                    f.write(f' {splitted.capitalize()}')
+                        else:
+                            f.write(f', {splitting.capitalize()}')
+
+                else:
+                    splitting_main = pd["data"]["experience"][i]["company"]["location"]["name"].split(" ")
+                    count1 = 0
+                    for splitted in splitting.split():
+                        if count1 == 0:
+                            f.write(f', {splitted.capitalize()}')
+                            count1 = 1
+                        else:
+                            f.write(f' {splitted.capitalize()}')
 
         if pd["data"]["experience"][i]["start_date"]:
             f.write(f'        {pd["data"]["experience"][i]["start_date"]}')
@@ -186,15 +244,29 @@ for i in range(len(pd["data"]["experience"])):
         #f.write(f'        {pd["data"]["experience"][i]["company"]["name"].capitalize()}')
         if pd["data"]["experience"][i]["company"]["location"]:
             if pd["data"]["experience"][i]["company"]["location"]["name"]:
-                for splitting in pd["data"]["experience"][i]["company"]["location"]["name"].split(", "):
-                    if len(splitting.split())> 1:
-                        count1=0
-                        for splitted in splitting.split():
-                            if count1==0:
-                                f.write(f', {splitted.capitalize()}')
-                                count1=1
-                            else:
-                                f.write(f' {splitted.capitalize()}')
+                splitting_main = pd["data"]["experience"][i]["company"]["location"]["name"].split(", ")
+                print(len(splitting_main))
+                if len(splitting_main) > 1:
+                    for splitting in splitting_main:
+                        if len(splitting.split()) > 1:
+                            count1 = 0
+                            for splitted in splitting.split():
+                                if count1 == 0:
+                                    f.write(f', {splitted.capitalize()}')
+                                    count1 = 1
+                                else:
+                                    f.write(f' {splitted.capitalize()}')
+                        else:
+                            f.write(f', {splitting.capitalize()}')
+                else:
+                    splitting_main = pd["data"]["experience"][i]["company"]["location"]["name"].split(" ")
+                    count1 = 0
+                    for splitted in splitting.split():
+                        if count1 == 0:
+                            f.write(f', {splitted.capitalize()}')
+                            count1 = 1
+                        else:
+                            f.write(f' {splitted.capitalize()}')
 
         if pd["data"]["experience"][i]["start_date"]:
             f.write(f'        {pd["data"]["experience"][i]["start_date"].capitalize()}')
