@@ -1,6 +1,6 @@
 # Sample-Code-Python-ConvertPDLJsonToTextResume-Public-PeopleDataLabs
 PeopleDataLabs
-Python3.8 or above
+Python3 or above
 
 # Test file for input for testing :Rchilli-SampleJsonInput.txt 
 # Run the python file
