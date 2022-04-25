@@ -1,5 +1,5 @@
-# Sample-Code-Python-ConvertPDLJsonToTextResume-Public-PeopleDataLabs
-PeopleDataLabs
+#ConvertPDLJsonToTextResume-Python
+This sample code read People data lab Json output and generate resume in text file
 #### Python3 or above
 
 ## Test file for input for testing :Rchilli-SampleJsonInput.txt 
